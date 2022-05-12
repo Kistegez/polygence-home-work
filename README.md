@@ -90,7 +90,7 @@ how to start working with Django.
 - [Install the latest Python version][install-python]
 - [Install Django][install-django]
 
-  `$ python -m pip install Django`
+  `$ python3 -m pip install Django`
 
 - [Create a Django project][create-project]
 
