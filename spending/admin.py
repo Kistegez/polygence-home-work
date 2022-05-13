@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from spending.models import Spending
+
+class SpendingAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Spending, SpendingAdmin)
