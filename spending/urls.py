@@ -1,7 +1,6 @@
-from rest_framework import routers
-from .api import SpendingViewSet
+from django.urls import path
+from spending import views
 
-router = routers.DefaultRouter()
-router.register('api/spendings', SpendingViewSet, 'spendings')
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('spendings/', views.spending_list),
+]
