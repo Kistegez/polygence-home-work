@@ -7,11 +7,11 @@ const CurrencyFilter = (props) => {
     <>
       <FiltersWrapper>
         <Orderings>
-          <select onChange={event => props.setFilter(event.currentTarget.value)}>
-            <option value='-date' onChange={_ => props.setFilter('-date')}>Sort by Date descending (default)</option>
-            <option value='date' onChange={_ => props.setFilter('date')}>Sort by Date ascending</option>
-            <option value='-amount_in_huf' onChange={_ => props.setFilter('-amount_in_huf')}>Sort by Amount descending</option>
-            <option value='amount_in_huf' onChange={_ => props.setFilter('amount_in_huf')}>Sort by Amount ascending</option>
+          <select onChange={event => props.setOrder(event.currentTarget.value)}>
+            <option value='-date'>Sort by Date descending (default)</option>
+            <option value='date' >Sort by Date ascending</option>
+            <option value='-amount'>Sort by Amount descending</option>
+            <option value='amount'>Sort by Amount ascending</option>
           </select>
         </Orderings>
         <CurrencyFilters>
