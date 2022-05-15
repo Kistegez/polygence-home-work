@@ -23,9 +23,9 @@ def spending_list(request, format=None):
 
 
 @api_view(['GET'])
-def spending_list_filter(request, filter, format=None):
+def spending_list_filter(request, filtering, format=None):
     try:
-        spendings = Spending.objects.filter(currency=filter)
+        spendings = Spending.objects.filter(currency=filtering)
     except Spending.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
