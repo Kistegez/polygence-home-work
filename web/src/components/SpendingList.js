@@ -11,11 +11,12 @@ import {
   AmountWrapper,
 } from "../styles/ComponentStyles";
 
-export default function SpendingList({ spendings, setSpendings, filter }) {
+export default function SpendingList({ spendings, setSpendings, filter, order }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    if(filter !== ''){
     fetch(`http://localhost:8000/spendings`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -38,7 +39,31 @@ export default function SpendingList({ spendings, setSpendings, filter }) {
       })
       .finally(() => {
         setLoading(false);
-      });
+      })}else{
+      fetch(`http://localhost:8000/spendings/${filter}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(async (res) => {
+        const body = await res.json();
+        return {
+          status: res.status,
+          body,
+        };
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setSpendings(response.body);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+
+    })};
   }, []);
 
   if (loading) return <Loader />;
