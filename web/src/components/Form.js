@@ -19,6 +19,22 @@ export default function Form() {
     });
   }
 
+  function onSubmit(e){
+    e.preventDefault()
+    const {description, amount, currency } = state
+    const spending = {description, amount, currency}
+
+    fetch('http://localhost:8000/api/spendings/', {
+          method: 'POST',
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(spending)
+         }
+    ).then(r => {console.log(r)})
+  }
+
   return (
     <>
       <FormStyles>
@@ -44,7 +60,7 @@ export default function Form() {
           <option value='HUF'>HUF</option>
           <option value='USD'>USD</option>
         </SelectStyles>
-        <InputStyles type='submit' value='Save' />
+        <InputStyles type='submit' value='Save' onClick={onSubmit} />
       </FormStyles>
     </>
   );
