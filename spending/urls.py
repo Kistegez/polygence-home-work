@@ -4,6 +4,6 @@ from spending import views
 
 urlpatterns = [
     path('spendings/', views.spending_list),
-    path('spendings/<filter>/', views.spending_list_filter),
+    path('spendings/<filtering>/', views.spending_list_filter),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
