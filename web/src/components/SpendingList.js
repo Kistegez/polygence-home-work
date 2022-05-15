@@ -15,6 +15,21 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const ordering = (list) =>{
+    if (order !== null){
+      if (order.charAt(0) === '-'){
+        list.reverse((a, b) => {
+        return b.order - a.order;
+      })
+      }else{
+      list.sort((a, b) => {
+        return b.order - a.order;
+      })
+      }
+    }
+    setSpendings(list);
+  }
+
   useEffect(() => {
     if(filter === ''){
     fetch(`http://localhost:8000/spendings`, {
@@ -30,7 +45,8 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       })
       .then((response) => {
         if (response.status === 200) {
-          setSpendings(response.body);
+          ordering(response.body);
+          console.log(order)
         }
       })
       .catch((err) => {
@@ -39,7 +55,6 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       })
       .finally(() => {
         setLoading(false);
-        console.log(filter)
 
       })}else{
       fetch(`http://localhost:8000/spendings/${filter}`, {
@@ -55,7 +70,7 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       })
       .then((response) => {
         if (response.status === 200) {
-          setSpendings(response.body);
+          ordering(response.body);
         }
       })
       .catch((err) => {

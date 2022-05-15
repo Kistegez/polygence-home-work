@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 export default function App() {
   const [spendings, setSpendings] = useState([]);
   const [filter, setFilter] = useState('');
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(null);
 
   return (
     <>
