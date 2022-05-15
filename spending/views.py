@@ -25,9 +25,9 @@ def spending_list(request, format=None):
 @api_view(['GET'])
 def spending_list_filter(request, filter, format=None):
     try:
-        spending = Spending.objects.get(currency=filter)
+        spendings = Spending.objects.filter(currency=filter)
     except Spending.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = SpendingSerializer(spending)
+    serializer = SpendingSerializer(spendings, many=True)
     return Response(serializer.data)

@@ -16,7 +16,7 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if(filter !== ''){
+    if(filter === ''){
     fetch(`http://localhost:8000/spendings`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -39,6 +39,8 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       })
       .finally(() => {
         setLoading(false);
+        console.log(filter)
+
       })}else{
       fetch(`http://localhost:8000/spendings/${filter}`, {
       method: "GET",
@@ -62,7 +64,6 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       })
       .finally(() => {
         setLoading(false);
-
     })};
   }, []);
 
