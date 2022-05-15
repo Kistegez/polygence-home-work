@@ -12,7 +12,7 @@ export default function App() {
     <>
       <Layout>
         <Form />
-        <FiltersAndOrderings setFilter={setFilter} />
+        <FiltersAndOrderings setFilter={setFilter}/>
         <SpendingList
           spendings={spendings}
           setSpendings={setSpendings}
