@@ -4,4 +4,4 @@ from spending.models import Spending
 class SpendingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spending
-        fields = '__all__'
+        fields = ['description', 'spent_at', 'amount', 'currency', ]
