@@ -24,7 +24,7 @@ export default function Form() {
     const {description, amount, currency } = state
     const spending = {description, amount, currency}
 
-    fetch('http://localhost:8000/api/spendings/', {
+    fetch('http://localhost:8000/spendings/', {
           method: 'POST',
           headers: {
             "Accept": "application/json",

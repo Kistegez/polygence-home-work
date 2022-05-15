@@ -16,7 +16,7 @@ export default function SpendingList({ spendings, setSpendings, filter }) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/spendings`, {
+    fetch(`http://localhost:8000/spendings`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
