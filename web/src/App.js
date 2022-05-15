@@ -6,15 +6,17 @@ import Layout from './components/Layout';
 
 export default function App() {
   const [spendings, setSpendings] = useState([]);
+  let [filter, setFilter] = useState(null);
 
   return (
     <>
       <Layout>
         <Form />
-        <FiltersAndOrderings />
+        <FiltersAndOrderings setFilter={setFilter} />
         <SpendingList
           spendings={spendings}
           setSpendings={setSpendings}
+          filter={filter}
         />
       </Layout>
     </>
