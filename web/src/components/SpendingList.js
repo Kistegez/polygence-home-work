@@ -11,27 +11,27 @@ import {
   AmountWrapper,
 } from "../styles/ComponentStyles";
 
-export default function SpendingList({ spendings, setSpendings, filter, order }) {
+const SpendingList = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const ordering = (list) =>{
-    if (order !== null){
-      if (order.charAt(0) === '-'){
-        list.reverse((a, b) => {
+    if (props.order !== null){
+      if (props.order.charAt(0) === '-'){
+        list.sort((a, b) => {
         return b.order - a.order;
       })
       }else{
-      list.sort((a, b) => {
+      list.reverse((a, b) => {
         return b.order - a.order;
       })
       }
     }
-    setSpendings(list);
+    props.setSpendings(list);
   }
 
   useEffect(() => {
-    if(filter === ''){
+    if(props.filter === ''){
     fetch(`http://localhost:8000/spendings`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -46,7 +46,6 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       .then((response) => {
         if (response.status === 200) {
           ordering(response.body);
-          console.log(order)
         }
       })
       .catch((err) => {
@@ -56,8 +55,9 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
       .finally(() => {
         setLoading(false);
 
+
       })}else{
-      fetch(`http://localhost:8000/spendings/${filter}`, {
+      fetch(`http://localhost:8000/spendings/${props.filter}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -91,7 +91,7 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
           The server is probably down. Please try again later.
         </ErrorMessage>
       )}
-      {!spendings.length && !error && (
+      {!props.spendings.length && !error && (
         <h1 style={{ textAlign: "center", marginTop: "4rem" }}>
           Yay!{" "}
           <span role="img" aria-label="jsx-a11y/accessible-emoji">
@@ -100,8 +100,8 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
           No spendings!
         </h1>
       )}
-      {spendings.length > 0 &&
-        spendings.map((spending) => (
+      {props.spendings.length > 0 &&
+        props.spendings.map((spending) => (
           <Spending key={spending.id}>
             <IconWrapper>
               <FiDollarSign color="var(--color-blue)" />
@@ -124,3 +124,4 @@ export default function SpendingList({ spendings, setSpendings, filter, order })
     </>
   );
 }
+export default SpendingList;
