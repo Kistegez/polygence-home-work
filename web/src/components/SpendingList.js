@@ -15,24 +15,9 @@ const SpendingList = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const ordering = (list) =>{
-    if (props.order !== null){
-      if (props.order.charAt(0) === '-'){
-        list.sort((a, b) => {
-        return b[props.order.slice(1)] - a[props.order.slice(1)];
-      })
-      }else{
-      list.sort((a, b) => {
-        return a[props.order] - b[props.order];
-      })
-      }
-    }
-    props.setSpendings(list);
-  }
 
   useEffect(() => {
-    if(props.filter === ''){
-    fetch(`http://localhost:8000/spendings`, {
+    fetch(`http://localhost:8000/spendings/${props.order}/?filtering=${props.filter}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -45,7 +30,7 @@ const SpendingList = (props) => {
       })
       .then((response) => {
         if (response.status === 200) {
-          ordering(response.body);
+          props.setSpendings(response.body);
         }
       })
       .catch((err) => {
@@ -54,33 +39,8 @@ const SpendingList = (props) => {
       })
       .finally(() => {
         setLoading(false);
-
-
-      })}else{
-      fetch(`http://localhost:8000/spendings/${props.filter}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then(async (res) => {
-        const body = await res.json();
-        return {
-          status: res.status,
-          body,
-        };
       })
-      .then((response) => {
-        if (response.status === 200) {
-          ordering(response.body);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-    })};
-  }, [props.filter]);
+  }, [props.filter, props.order, props.spendings]);
 
   if (loading) return <Loader />;
 
