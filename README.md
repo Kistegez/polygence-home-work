@@ -22,7 +22,7 @@ This simple web app allows the users to:
 
 ## Building up the project
 
-You have to open the project folder in terminal or interpreter (such as VS code).
+Open the project folder.
 
 ####pip requirements:
 After you have to run the following command: "pip install -r requirements.txt". You can do it globally or if you want to 
