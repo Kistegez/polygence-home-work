@@ -8,8 +8,8 @@ const CurrencyFilter = (props) => {
       <FiltersWrapper>
         <Orderings>
           <select onChange={event => props.setOrder(event.currentTarget.value)}>
-            <option value='-date'>Sort by Date descending (default)</option>
-            <option value='date' >Sort by Date ascending</option>
+            <option value='-spent_at'>Sort by Date descending (default)</option>
+            <option value='spent_at' >Sort by Date ascending</option>
             <option value='-amount'>Sort by Amount descending</option>
             <option value='amount'>Sort by Amount ascending</option>
           </select>
