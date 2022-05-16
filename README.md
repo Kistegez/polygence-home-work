@@ -24,8 +24,26 @@ This simple web app allows the users to:
 
 You have to open the project folder in terminal or interpreter (such as VS code).
 
-pip requirements:
-After you have to run the following command: pip install -r requirements.txt. You can do it globally or if you want to 
-you can create a virtual environment for it (mkdir venvfolder -> in the folder: python3 -m venv env -> source env/bin/activate and
-after all run the pip install -r requirements.txt).
+####pip requirements:
+After you have to run the following command: "pip install -r requirements.txt". You can do it globally or if you want to 
+you can create a virtual environment for it ("mkdir venvfolder" -> in the folder: "python3 -m venv env" -> "source env/bin/activate" and
+after all run the "pip install -r requirements.txt").
+
+####node requirements:
+To have the required dependencies for the node module you have to run "npm install"
+
+####Set up database:
+To have the empty database to work with you have to run "python3 manage.py migrate"
+After you have a db.sqlite file where you can save the spendings and list them as well
+
+####run the servers:
+The have both servers running you just have to start it.
+The Django will start by: "python3 manage.py runserver"
+The React will start by: "npm start"
+
+#All ready to use in localhost:3000
+
+
+
+
 
