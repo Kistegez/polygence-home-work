@@ -24,7 +24,7 @@ This simple web app allows the users to:
 
 ###This only work if you have Docker to run with
 
-You have to open the project folder in terminal or interpreter (such as VS code).
+Open the project folder.
 After you just have to run "docker-compose up" and it builds everything up for you
 
 ##It is ready on localhost:3000
