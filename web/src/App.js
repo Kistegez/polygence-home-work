@@ -7,12 +7,12 @@ import Layout from './components/Layout';
 export default function App() {
   const [spendings, setSpendings] = useState([]);
   const [filter, setFilter] = useState('');
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState('-spent_at');
 
   return (
     <>
       <Layout>
-        <Form />
+        <Form spendings={spendings}/>
         <FiltersAndOrderings setFilter={setFilter} setOrder={setOrder}/>
         <SpendingList
           spendings={spendings}
