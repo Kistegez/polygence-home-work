@@ -19,11 +19,11 @@ const SpendingList = (props) => {
     if (props.order !== null){
       if (props.order.charAt(0) === '-'){
         list.sort((a, b) => {
-        return b.order - a.order;
+        return b[props.order.slice(1)] - a[props.order.slice(1)];
       })
       }else{
-      list.reverse((a, b) => {
-        return b.order - a.order;
+      list.sort((a, b) => {
+        return a[props.order] - b[props.order];
       })
       }
     }
@@ -80,7 +80,7 @@ const SpendingList = (props) => {
       .finally(() => {
         setLoading(false);
     })};
-  }, []);
+  }, [props.filter]);
 
   if (loading) return <Loader />;
 
