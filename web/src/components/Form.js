@@ -3,7 +3,7 @@ import { InputStyles } from '../styles/InputStyles';
 import { SelectStyles } from '../styles/SelectStyles';
 import { FormStyles } from '../styles/ComponentStyles';
 
-export default function Form() {
+const Form = (props) => {
   const [state, setState] = useState({
     description: '',
     amount: 0,
@@ -32,7 +32,12 @@ export default function Form() {
           },
           body: JSON.stringify(spending)
          }
-    ).then(r => {console.log(r)})
+    ).then(r => {props.spendings.push(r);
+    setState({
+    description: '',
+    amount: 0,
+    currency: 'USD',})
+    })
   }
 
   return (
@@ -65,3 +70,5 @@ export default function Form() {
     </>
   );
 }
+
+export default Form;
